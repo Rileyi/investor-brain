@@ -6,7 +6,7 @@ window.DD = {
   substack: "https://rileygikni.substack.com", // email signup (embedded on the report page)
   seatsLeft: 80,                    // update by hand as members join; the founding offer caps at seatsTotal
   seatsTotal: 100,
-  goatcounter: "",                  // GoatCounter site code shared by all of Riley's landing pages; empty = analytics off
+  goatcounter: "rileystartup",                  // GoatCounter site code shared by all of Riley's landing pages; empty = analytics off
   page: "investor-brain",           // prefix for this page's events, so several landing pages can share one counter
 };
 
