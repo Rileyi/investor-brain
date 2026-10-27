@@ -64,7 +64,7 @@
     <a class="btn ghost" href="index.html">Diagnose my deck (free) →</a>
   </section>
 </main>
-<script src="config.js?v=2"></script>
+<script src="config.js?v=3"></script>
 <script>
   var NAMES = {
     oneliner: "One-liner", rude: "Problem: R.U.D.E. + painkiller", numbers: "Problem in numbers",
@@ -84,6 +84,13 @@
 
   $("skool").href = DD.skool;
   DD.fillSeats();
+  DD.trackClicks({ skool: "skool-click/report" });
+  if (total !== null) {
+    DD.track("report/opened");
+    DD.track("report/score-" + (total < 50 ? "under-50" : total < 75 ? "50-74" : "75-plus"));
+    DD.track("report/croissants-" + (clamp(q.get("c"), 3) || 0));
+    if (weak) DD.track("report/weakest-" + weak);
+  }
   $("substack").src = DD.substack + "/embed";
   if (total === null) {
     $("verdict").textContent = "No score in this link.";

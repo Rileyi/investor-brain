@@ -6,6 +6,7 @@ window.DD = {
   substack: "https://rileygikni.substack.com", // email signup (embedded on the report page)
   seatsLeft: 80,                    // update by hand as members join; the founding offer caps at seatsTotal
   seatsTotal: 100,
+  goatcounter: "",                  // GoatCounter site code (e.g. "investorbrain"); empty = analytics off
 };
 
 DD.fillSeats = function () {
@@ -24,3 +25,25 @@ DD.youtube = function (box, id, title) {
   box.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
     '?rel=0" title="' + title + '" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>';
 };
+
+// Analytics (GoatCounter: no cookies, no consent banner). Page views count on their own; DD.track() sends named events.
+DD.track = function (name) {
+  if (!DD.goatcounter) return;
+  var send = function () { window.goatcounter.count({ path: name, title: name, event: true }); };
+  if (window.goatcounter && window.goatcounter.count) send();
+  else (DD._queue = DD._queue || []).push(send);
+};
+DD.trackClicks = function (map) {   // map: element id -> event name
+  Object.keys(map).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener("click", function () { DD.track(map[id]); });
+  });
+};
+(function () {
+  if (!DD.goatcounter) return;
+  var s = document.createElement("script");
+  s.async = true; s.src = "https://gc.zgo.at/count.js";
+  s.setAttribute("data-goatcounter", "https://" + DD.goatcounter + ".goatcounter.com/count");
+  s.onload = function () { (DD._queue || []).forEach(function (f) { f(); }); DD._queue = []; };
+  document.head.appendChild(s);
+})();

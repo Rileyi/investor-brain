@@ -196,11 +196,14 @@
     </div>
   </section>
 </main>
-<script src="config.js?v=2"></script>
+<script src="config.js?v=3"></script>
 <script>
   ["open", "open2", "open3", "open4"].forEach(function (id) { document.getElementById(id).href = DD.claudeLink(); });
   ["skool", "skool2", "skool3"].forEach(function (id) { document.getElementById(id).href = DD.skool; });
   DD.fillSeats();
+  DD.trackClicks({ open: "diag-click/offer", open2: "diag-click/steps", open3: "diag-click/ps", open4: "diag-click/testimonials",
+    copy: "diag-click/copy-prompt", skool: "skool-click/offer", skool2: "skool-click/ps", skool3: "skool-click/testimonials" });
+  document.querySelector(".anchor").addEventListener("click", function () { DD.track("anchor/testimonials"); });
   var reel = document.querySelector(".reel");
   document.querySelector(".reel-nav .prev").onclick = function () { reel.scrollBy({ left: -reel.clientWidth * .8, behavior: "smooth" }); };
   document.querySelector(".reel-nav .next").onclick = function () { reel.scrollBy({ left: reel.clientWidth * .8, behavior: "smooth" }); };

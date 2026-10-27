@@ -20,3 +20,11 @@ no fix. It ends with a link to `report.html`, which shows the scores and sends t
 3. Publish with GitHub Pages (repository Settings → Pages → deploy from the main branch, root folder).
 
 Try a report: `report.html?s=42&p=6,3,5,4,2,6,7,1,4,4&w=proof`
+
+## Analytics (GoatCounter)
+Set `goatcounter` in `config.js` to the site code. No cookies, so no consent banner. What gets counted:
+- Page views: the entry page and the report page (automatic).
+- `diag-click/offer|steps|testimonials|ps` and `diag-click/copy-prompt`: someone heads to Claude.
+- `report/opened`, `report/score-under-50|50-74|75-plus`, `report/croissants-0..3`, `report/weakest-<section>`: a diagnosis finished and its report link was opened.
+- `skool-click/offer|testimonials|ps|report`: someone heads to the $99 Skool page.
+- `anchor/testimonials`: someone jumped to the testimonials.
