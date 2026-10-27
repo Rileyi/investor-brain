@@ -6,7 +6,8 @@ window.DD = {
   substack: "https://rileygikni.substack.com", // email signup (embedded on the report page)
   seatsLeft: 80,                    // update by hand as members join; the founding offer caps at seatsTotal
   seatsTotal: 100,
-  goatcounter: "",                  // GoatCounter site code (e.g. "investorbrain"); empty = analytics off
+  goatcounter: "",                  // GoatCounter site code shared by all of Riley's landing pages; empty = analytics off
+  page: "investor-brain",           // prefix for this page's events, so several landing pages can share one counter
 };
 
 DD.fillSeats = function () {
@@ -29,6 +30,7 @@ DD.youtube = function (box, id, title) {
 // Analytics (GoatCounter: no cookies, no consent banner). Page views count on their own; DD.track() sends named events.
 DD.track = function (name) {
   if (!DD.goatcounter) return;
+  name = DD.page + "/" + name;
   var send = function () { window.goatcounter.count({ path: name, title: name, event: true }); };
   if (window.goatcounter && window.goatcounter.count) send();
   else (DD._queue = DD._queue || []).push(send);

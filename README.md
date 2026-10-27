@@ -22,7 +22,7 @@ no fix. It ends with a link to `report.html`, which shows the scores and sends t
 Try a report: `report.html?s=42&p=6,3,5,4,2,6,7,1,4,4&w=proof`
 
 ## Analytics (GoatCounter)
-Set `goatcounter` in `config.js` to the site code. No cookies, so no consent banner. What gets counted:
+Set `goatcounter` in `config.js` to the site code. The counter is shared with Riley's other landing pages: every event below is prefixed with `page` (here `investor-brain/`), and page views are split by URL. No cookies, so no consent banner. What gets counted:
 - Page views: the entry page and the report page (automatic).
 - `diag-click/offer|steps|testimonials|ps` and `diag-click/copy-prompt`: someone heads to Claude.
 - `report/opened`, `report/score-under-50|50-74|75-plus`, `report/croissants-0..3`, `report/weakest-<section>`: a diagnosis finished and its report link was opened.
