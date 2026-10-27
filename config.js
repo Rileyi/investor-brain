@@ -2,7 +2,7 @@
 window.DD = {
   base: "rileyi.github.io/investor-brain", // GitHub Pages address (no https://); repo github.com/Rileyi/investor-brain
   skool: "https://www.skool.com/business-bakery-9093/about", // the $99/month Skool tier page
-  teardownId: "",                   // YouTube id of the Hylee deck teardown (both pages); empty = placeholder
+  teardownId: "_GuO4_DEzLc",                   // YouTube id of the Hylee deck teardown (both pages); empty = placeholder
   substack: "https://rileygikni.substack.com", // email signup (embedded on the report page)
   seatsLeft: 80,                    // update by hand as members join; the founding offer caps at seatsTotal
   seatsTotal: 100,
