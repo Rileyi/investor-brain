@@ -1,0 +1,97 @@
+/* Approved theme (Oct 27): warm ivory, dark-brown ink, burnt-sienna accent, Fraunces headlines, Atkinson body. Loaded after style.css. */
+:root {
+  --bg: #f6f1e9; --card: #fffdf9; --ink: #3a2a20; --muted: #6e5c4f; --line: #eadfcf;
+  --tag: #f3e9db; --orange: #b5501f; --orange-ink: #ffffff; --soft: #f9e9dd;
+  --low: #b5501f; --mid: #b98a2e; --high: #4f7a4a;
+}
+body { font-size: 18px; line-height: 1.6; letter-spacing: 0; }
+h1, h2, .brand, ul.proof b, .score, .quote, .xprize b { font-family: "Fraunces", Georgia, serif; font-optical-sizing: auto; }
+.wrap { max-width: 820px; padding: 28px 20px 80px; }
+.top { margin-bottom: 28px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.brand { font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+.card { border-radius: 20px; padding: 40px 36px; margin-bottom: 22px;
+  box-shadow: 0 1px 2px rgba(58,42,32,.05), 0 14px 36px rgba(58,42,32,.07); }
+h1, h2 { text-wrap: balance; }
+h1 { font-size: 44px; line-height: 1.1; font-weight: 600; letter-spacing: -.02em; margin: 10px 0 14px; }
+h2 { font-size: 28px; line-height: 1.2; font-weight: 600; letter-spacing: -.01em; margin-bottom: 14px; }
+.lede { font-size: 20px; }
+.tag { background: transparent; padding: 0; border-radius: 0; color: var(--orange); font-size: 13px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; }
+.btn { border-radius: 999px; font-size: 18px; padding: 15px 28px; letter-spacing: .01em; }
+.btn:hover, .btn:focus-visible { filter: none; background: var(--ink); border-color: var(--ink); color: var(--card); outline: none; }
+.btn.ghost:hover, .btn.ghost:focus-visible { background: var(--ink); color: var(--card); }
+ul.proof { margin: 22px 0 22px; }
+ul.proof li { padding: 16px 16px 16px 0; }
+ul.proof li + li { padding-left: 18px; }
+ul.proof b { font-size: 32px; font-weight: 600; letter-spacing: -.01em; }
+.video { border-radius: 14px; }
+.quote { background: transparent; border-left: 2px solid var(--orange); border-radius: 0; padding: 4px 0 4px 20px; margin-top: 22px;
+  font-size: 24px; font-weight: 500; line-height: 1.35; }
+.quote span { font-family: "Atkinson Hyperlegible", system-ui, sans-serif; font-size: 15px; }
+.callout { border-left-width: 2px; border-radius: 0 10px 10px 0; padding: 12px 16px; }
+.path.live { border: 1.5px solid var(--orange); }
+.bonus { border-radius: 10px; }
+ul.rows .n { color: var(--orange); }
+ol.steps li::before { background: transparent; color: var(--orange); border: 1.5px solid var(--orange); font-size: 16px; }
+.prompt { border-radius: 10px; }
+.photo, .xprize, .xprize img { border-radius: 14px; }
+.xprize { background: var(--tag); }
+.xprize b { font-weight: 600; }
+.xprize .tag { background: transparent; }
+.ps { border-left: 2px solid var(--orange); }
+.score { font-weight: 600; letter-spacing: -.03em; }
+.bar .track { height: 8px; }
+.bar.weak { border-radius: 10px; }
+@media (max-width: 520px) {
+  h1 { font-size: 30px; }
+  h2 { font-size: 24px; }
+  .card { padding: 26px 18px; }
+  ul.proof b { font-size: 24px; }
+  ul.proof li, ul.proof li + li { padding: 12px 0; }
+  .quote { font-size: 20px; }
+}
+/* colour by score: low = sienna, middle = ochre, strong = green */
+.bar.low .fill { background: var(--low); } .bar.mid .fill { background: var(--mid); } .bar.high .fill { background: var(--high); }
+.bar.low .v { color: var(--low); } .bar.mid .v { color: var(--mid); } .bar.high .v { color: var(--high); }
+.score.low { color: var(--low); } .score.mid { color: var(--mid); } .score.high { color: var(--high); }
+.score small { color: var(--muted); }
+body { background: radial-gradient(1200px 500px at 50% -120px, var(--soft), transparent 70%) no-repeat, var(--bg); }
+/* Bella testimonial: portrait clip beside the quote */
+.testimonial { display: flex; gap: 22px; align-items: center; margin-top: 24px; }
+.testimonial video { flex: 0 0 180px; width: 180px; aspect-ratio: 9/16; object-fit: cover; border-radius: 14px; background: var(--tag); }
+.testimonial .quote { margin-top: 0; }
+@media (max-width: 520px) {
+  .testimonial { flex-direction: column; align-items: stretch; }
+  .testimonial video { width: 100%; flex-basis: auto; max-height: 460px; }
+}
+/* Anchor to the testimonials (under the main video) */
+.anchor { display: flex; align-items: center; gap: 16px; margin-top: 22px; padding: 16px 20px; border-radius: 16px; text-decoration: none;
+  color: var(--ink); background: var(--soft); border: 1.5px solid var(--orange); }
+.anchor:hover, .anchor:focus-visible { background: var(--tag); }
+.anchor .play { flex: 0 0 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--orange); color: var(--orange-ink); font-size: 16px; }
+.anchor b { display: block; font-family: "Fraunces", Georgia, serif; font-size: 21px; font-weight: 600; }
+.anchor small { display: block; font-size: 15px; color: var(--muted); }
+.anchor .arrow { margin-left: auto; font-size: 24px; color: var(--orange); }
+/* Testimonial carousel */
+.proof-reel { position: relative; scroll-margin-top: 16px; }
+.reel-nav { display: flex; gap: 8px; justify-content: flex-end; margin: 6px 0 12px; }
+.reel-nav button { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--orange); background: transparent; color: var(--orange); font-size: 18px; cursor: pointer; }
+.reel-nav button:hover { background: var(--orange); color: var(--orange-ink); }
+.reel { list-style: none; margin: 0 -36px; padding: 4px 36px 12px; display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+.clip { flex: 0 0 220px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 6px; }
+.clip video, .clip .ph { width: 220px; aspect-ratio: 9/16; border-radius: 14px; object-fit: cover; background: var(--tag); }
+.clip .ph { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--muted); font-size: 14px; border: 1px dashed var(--line); }
+.clip .ph span { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--card); color: var(--orange); margin-bottom: 8px; font-size: 16px; }
+.clip .result { align-self: flex-start; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--orange); background: var(--soft); border-radius: 999px; padding: 3px 10px; }
+.clip p { margin: 2px 0 2px; font-size: 15px; line-height: 1.45; }
+.clip b { font-size: 15px; } .clip small { font-size: 13px; color: var(--muted); }
+@media (max-width: 520px) {
+  .reel { margin: 0 -18px; padding: 4px 18px 12px; }
+  .clip { flex-basis: 200px; } .clip video, .clip .ph { width: 200px; }
+  .anchor b { font-size: 18px; }
+}
+.croissants { margin: 12px 0 0; padding: 10px 14px; background: var(--soft); border-radius: 10px; font-size: 17px; }
+.croissants b { margin-right: 6px; }
+/* Free path button: deep green, so free and paid read as two different choices */
+.btn.free { background: #3f6b45; border-color: #3f6b45; color: #ffffff; }
+.btn.free:hover, .btn.free:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--card); }

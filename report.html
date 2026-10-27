@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Your Deck Report</title>
+<meta name="description" content="Your Investor Brain pitch deck score, and how to get the fix.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap">
+<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="theme.css?v=3">
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <div class="brand">Riley Ikni · The SaaS Kitchen</div>
+  </div>
+
+  <section class="card" id="result">
+    <span class="tag">Your Investor Brain score</span>
+    <div class="score" style="margin-top:14px"><span id="total">–</span><small>/100</small></div>
+    <div class="verdict" id="verdict"></div>
+    <p class="croissants" id="croissants" hidden></p>
+    <p class="lede" style="margin-top:12px" id="weakline"></p>
+  </section>
+
+  <section class="card" id="sections">
+    <h2>Your 10 sections</h2>
+    <div id="bars"></div>
+  </section>
+
+  <section class="card">
+    <span class="tag">Step 1 · Watch</span>
+    <h2 style="margin-top:10px">Watch Riley tear down a real deck, live</h2>
+    <p>A founder raising $1M brought her deck to a live session. Riley takes it apart slide by slide: PSD, the 10-slide cheat code, NECK, and which investors to target.</p>
+    <div class="video" id="teardown">The teardown video is coming soon.</div>
+  </section>
+
+  <section class="card" style="border:2px solid var(--orange)">
+    <span class="tag">Step 2 · Get the fix · <span class="seats">80 of 100</span> founding seats left</span>
+    <h2 style="margin-top:10px">Get Riley's fix, inside the community</h2>
+    <ul class="rows">
+      <li><span class="n">✓</span><span>Daily Q&amp;A with Riley, answered async</span></li>
+      
+      <li><span class="n">✓</span><span>Founders raising and selling, at the same stage as you</span></li>
+      <li class="bonus"><span class="n">+</span><span><b>Limited bonus: a private 30-minute Deck Fix</b> with Riley. <span class="strike">$199</span> on its own.</span></li>
+    </ul>
+    <div class="actions">
+      <a class="btn" id="skool" href="#" target="_blank" rel="noopener">Join for $99/month →</a>
+    </div>
+    <p class="small" style="margin-top:12px">The Deck Fix bonus is for the first 100 members only. Bring this report to your Deck Fix so Riley starts from your score.</p>
+  </section>
+
+  <section class="card">
+    <h2>Not ready yet? Get the teardowns by email</h2>
+    <p class="small">Real founder stories and deck lessons from Riley. Unsubscribe anytime.</p>
+    <iframe class="substack" id="substack" title="Email signup" frameborder="0" scrolling="no"></iframe>
+  </section>
+
+  <section class="card">
+    <p class="small">Don't have a score yet?</p>
+    <a class="btn ghost" href="index.html">Diagnose my deck (free) →</a>
+  </section>
+</main>
+<script src="config.js?v=2"></script>
+<script>
+  var NAMES = {
+    oneliner: "One-liner", rude: "Problem: R.U.D.E. + painkiller", numbers: "Problem in numbers",
+    market: "Size of the opportunity", solution: "Solution: benefits + MSG", distribution: "Distribution",
+    competition: "Competition: FCMB + the gap", founder: "Why you: founder-market fit", ask: "The ask", deck: "Deck discipline"
+  };
+  var ORDER = Object.keys(NAMES);
+  var q = new URLSearchParams(location.search);
+  var clamp = function (n, max) { n = parseInt(n, 10); return isNaN(n) ? null : Math.max(0, Math.min(max, n)); };
+  var parts = (q.get("p") || "").split(",").map(function (x) { return clamp(x, 10); });
+  if (parts.length !== 10 || parts.indexOf(null) !== -1) parts = null;
+  var total = clamp(q.get("s"), 100);
+  if (total === null && parts) total = parts.reduce(function (a, b) { return a + b; }, 0);
+  var weak = ORDER.indexOf(q.get("w")) !== -1 ? q.get("w") : null;
+  if (!weak && parts) weak = ORDER[parts.indexOf(Math.min.apply(null, parts))];
+  var $ = function (id) { return document.getElementById(id); };
+
+  $("skool").href = DD.skool;
+  DD.fillSeats();
+  $("substack").src = DD.substack + "/embed";
+  if (total === null) {
+    $("verdict").textContent = "No score in this link.";
+    $("weakline").textContent = "Run the free diagnosis to get your score.";
+    $("sections").hidden = true;
+  } else {
+    $("total").textContent = total;
+    $("total").parentNode.classList.add(total < 50 ? "low" : total < 75 ? "mid" : "high");
+    $("verdict").textContent = total < 50 ? "An investor would most likely pass at this stage."
+      : total < 75 ? "You might get a second meeting, but these gaps will come up."
+      : "Investor-ready. The details will decide the meeting.";
+    var c = clamp(q.get("c"), 3);
+    if (c) { $("croissants").hidden = false; $("croissants").innerHTML = "<b>Revenue bonus: " + "🥐".repeat(c) + "</b> You sold the croissant before baking it. Investors love that."; }
+    if (weak) $("weakline").innerHTML = "Where you lose investors most: <b>" + NAMES[weak] + "</b>.";
+    $("sections").hidden = !parts;
+    if (parts) $("bars").innerHTML = ORDER.map(function (k, n) {
+      var lvl = parts[n] <= 3 ? " low" : parts[n] <= 6 ? " mid" : " high";
+      return '<div class="bar' + lvl + (k === weak ? " weak" : "") + '"><span>' + (n + 1) + ". " + NAMES[k] +
+        '</span><span class="v">' + parts[n] + '/10</span><div class="track"><div class="fill" style="width:' + parts[n] * 10 + '%"></div></div></div>';
+    }).join("");
+  }
+  DD.youtube(document.getElementById("teardown"), DD.teardownId, "Live pitch deck teardown");
+</script>
+</body>
+</html>
