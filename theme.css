@@ -98,3 +98,5 @@ body { background: radial-gradient(1200px 500px at 50% -120px, var(--soft), tran
 .note { display: block; margin: 10px 0 14px; padding: 10px 14px; font-size: 16px; line-height: 1.45; color: var(--ink);
   background: #fdf3d7; border-left: 3px solid #b98a2e; border-radius: 0 8px 8px 0; }
 .note b { color: #8a5f12; }
+.promise { margin: 0 0 14px; padding: 12px 14px; border-radius: 10px; background: #e8f0e4; border-left: 3px solid #4f7a4a; font-size: 17px; line-height: 1.45; }
+.promise b { color: #2f5a33; }
